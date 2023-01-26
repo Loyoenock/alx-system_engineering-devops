@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-#A bash script that displays the time for 12 hours and 59 minutes 
+#A bash script that displays the time for 12 hours and 59 minutes
 
 i=1
 j=0
