@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-A bash script that displays Best School 10 times.
+#A bash script that displays Best School 10 times.
 
 i=10
 until [ "$i" -le 0 ]
