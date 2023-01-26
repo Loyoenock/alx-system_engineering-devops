@@ -5,3 +5,4 @@ for (( 1 = 0; i<10; i++))
 do
     echo "Best School"
 done
+i=$i
