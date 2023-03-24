@@ -1,5 +1,5 @@
 # Executing commad
 exec { 'pkill killmenow':
-  pkill => '/usr/bin:/usr/sbin:/bin'
+  path => '/usr/bin:/usr/sbin:/bin'
 }
 
