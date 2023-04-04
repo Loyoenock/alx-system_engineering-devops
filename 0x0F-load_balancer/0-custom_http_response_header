@@ -23,9 +23,9 @@ echo 'Hello World!' |sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" |sudo tee /var/html/404.html
 
 # Configuring a redirect for a page/redirect_me & adding header for hostname display
-string_for_redirect="server_name_;\n\tadd_header X-Served-By \&hostname;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
-sudo se -i "s/server_name_;/$string_for_redirect/" /etc/nginx/sites_enabled/default
+string_for_redirect="server_name_;\n\tadd_header X-Served-By &hostname;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
+sudo sed -i "s/server_name_;/$string_for_redirect/" /etc/nginx/sites_enabled/default
 
 # Redirection for 404 page
-string_for_redirect="listen 80 default_server;\n\terror_page \/404.html;\n\tlocation = \/404.html {\nt\troot \/var\/www\/html;\n\tinternal;\n\t}"
+string_for_redirect="listen 80 default_server;\n\terror_page \/404.html;\n\tlocation = \/404.html {\nt\troot \/var\/html;\n\tinternal;\n\t}"
 /listen 80 default_server;$string_for_redirect/" /etc/ngnix/sites-enabled/default
