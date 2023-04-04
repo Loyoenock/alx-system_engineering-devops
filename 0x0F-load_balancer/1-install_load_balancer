@@ -12,7 +12,7 @@ frontend hbnb-lb_front
 	bind *:80
 	mode http
 	default_backend hbnb-lb_back
-back hbnb-back
+backend hbnb-back
 	balance roundrobin
 	server 108889-web-01 35.153.194.37:80 check
 	server 108889-web-02 54.173.251.120:80 check
