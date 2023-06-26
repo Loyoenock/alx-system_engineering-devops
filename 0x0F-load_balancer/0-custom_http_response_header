@@ -3,8 +3,7 @@
 # Custom HTTP header name must be X-Served_By
 # Cutom HTTP header value must be the host name of the server running Nginx
 
-sudo apt-get update
-sudo apt-get -y install nginx
+sudo apt-get update && sudo apt-get -y install nginx
 
 # Allow firewall through port 80
 
@@ -12,20 +11,20 @@ sudo ufw allow 'Nginx HTTP'
 
 sudo mkdir -p /var/www/html
 
-# Allow Priviledge to create file in this directory
+# Allow priviledge to create file in this directory
 
 sudo chmod -R u+x /var/www
 
-# Make main page
+# create main page
 echo 'Hello World!' |sudo tee /var/www/html/index.html
 
-# Make 404 page
+# create page
 echo "Ceci n'est pas une page" |sudo tee /var/html/404.html
 
-# Configuring a redirect for a page/redirect_me & adding header for hostname display
+# Configure redirect for a page/redirect_me & adding header for hostname display
 string_for_redirect="server_name_;\n\tadd_header X-Served-By &hostname;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com permanent;"
 sudo sed -i "s/server_name_;/$string_for_redirect/" /etc/nginx/sites_enabled/default
 
-# Redirection for 404 page
+# 404 page redirection
 string_for_redirect="listen 80 default_server;\n\terror_page \/404.html;\n\tlocation = \/404.html {\nt\troot \/var\/html;\n\tinternal;\n\t}"
 /listen 80 default_server;$string_for_redirect/" /etc/ngnix/sites-enabled/default
