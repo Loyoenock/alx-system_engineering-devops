@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A bash script that accepts one arguement,and runs whoami under the arguement
+sudo -u '$1' whoami
