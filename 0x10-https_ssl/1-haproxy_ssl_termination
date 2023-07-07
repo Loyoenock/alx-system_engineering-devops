@@ -47,4 +47,4 @@ frontend loyofication-frontend-https
 
 backend loyofication-backend
         balance roundrobin
-        server 108889-web-01 3.83.253.209:80 check
+        server 108889-web-01 100.25.222.228:80 check
