@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A script that exports to-do list information 
+A script that exports to-do list information
 of all employees to JSON format.
 """
 import json
@@ -16,6 +16,5 @@ if __name__ == "__main__":
                 "task": t.get("title"),
                 "completed": t.get("completed"),
                 "username": u.get("username")
-            } for t in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
+            } for t in requests.get(url + "todos", params={"userId": u.get("id")}).json()]
             for u in users}, jsonfile)
