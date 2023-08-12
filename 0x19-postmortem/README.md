@@ -2,18 +2,18 @@
 
 Following the rollout of **ALX School's System Engineering & Dev Ops Project 0x19**, an unexpected service disruption was observed on an isolated** Ubuntu 14.04** container that was hosting an Apache web server. During this incident, attempts to access the server through GET requests resulted in encountering 500 Internal Server Errors, whereas the anticipated response should have been an HTML file presenting a basic Holberton WordPress site.
 
-## Investigation and Resolution Process
-1. Conducted an examination of active processes using ps aux command. This revealed that both the root and www-data users had functional apache2 processes running.
+## Investigation and Resolution Process - 0n 9.08.2023
+1. 20:00hrs - Conducted an examination of active processes using ps aux command. This revealed that both the root and www-data users had functional apache2 processes running.
 
-2. Investigated the contents of the sites-available directory located within the /etc/apache2/ path. Confirmed that the web server was serving content stored in the /var/www/html/ directory.
+2. 20:10hrs - Investigated the contents of the sites-available directory located within the /etc/apache2/ path. Confirmed that the web server was serving content stored in the /var/www/html/ directory.
 
-3. Initiated a two-fold approach: a) Executed strace on the PID associated with the root Apache process in one terminal, and b) employed the curl command to query the server in another terminal. Unfortunately, the strace output did not yield any valuable insights.
+3. 20:20hrs - Initiated a two-fold approach: a) Executed strace on the PID associated with the root Apache process in one terminal, and b) employed the curl command to query the server in another terminal. Unfortunately, the strace output did not yield any valuable insights.
 
-4. Replicated the previous step, this time focusing on the PID linked to the www-data process. This effort bore fruit as the strace analysis highlighted an -1 ENOENT (No such file or directory) error encountered when attempting to access the file /var/www/html/wp-includes/class-wp-locale.phpp.
+4. 20:40hr -  Replicated the previous step, this time focusing on the PID linked to the www-data process. This effort bore fruit as the strace analysis highlighted an -1 ENOENT (No such file or directory) error encountered when attempting to access the file /var/www/html/wp-includes/class-wp-locale.phpp.
 
-5. Undertook a systematic evaluation of files within the /var/www/html/ directory. Employed Vim's pattern matching functionality to locate the erroneous .phpp file extension, successfully pinpointing it within the wp-settings.php file (specifically on Line 137, within the statement require_once( ABSPATH . WPINC . '/class-wp-locale.php' );).
+5. 21:00hrs - Undertook a systematic evaluation of files within the /var/www/html/ directory. Employed Vim's pattern matching functionality to locate the erroneous .phpp file extension, successfully pinpointing it within the wp-settings.php file (specifically on Line 137, within the statement require_once( ABSPATH . WPINC . '/class-wp-locale.php' );).
 
-6. Rectified the issue by removing the extraneous trailing 'p' from the aforementioned line.
+6. 21:05hrs - Rectified the issue by removing the extraneous trailing 'p' from the aforementioned line.
 
 7. Executed another curl request against the server and received a favorable response with a status code of 200.
 
